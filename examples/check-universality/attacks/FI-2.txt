@@ -1,0 +1,21 @@
+(* 2-rounds unbalanced feistel injection from 2018/547 (Fig. 8) *)
+
+is_universal {
+
+  rounds F1,F2.
+
+  oracle R (x1) :=
+    x2 = F1(x1);
+    x3 = x1 + F2(x2);
+    return x2, x3.
+
+  distinguisher :=
+    x1 <-$ {0,1}^n;
+    x2 = R_1(x1);
+    x3 = R_2(x1);
+    y2 <- F2(x2);
+    assert x1 + y2 = x3;
+    return 1;
+  .
+
+}.

@@ -1,0 +1,23 @@
+opam-version: "1.2"
+name:         "Indiff"
+maintainer:   ["Miguel Ambrona <mac.ambrona@gmail.com>"]
+author:       ["Miguel Ambrona <mac.ambrona@gmail.com>"]
+description:  "Indifferentiability Analyzer"
+homepage:     "https://github.com/miguel-ambrona/autodiff"
+bug-reports:  "https://github.com/miguel-ambrona/autodiff"
+synopsis:     "Automated search of indifferentiability attacks"
+version:      "1.0.0"
+
+build: [
+  [make]
+]
+
+install: [make "install"]
+
+depends: [
+  "core_kernel"  {build}
+  "menhir"       {build}
+  "ocamlbuild"   {build}
+]
+
+available: [ocaml-version >= "4.03.0"]

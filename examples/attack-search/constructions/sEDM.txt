@@ -1,0 +1,11 @@
+(* Single-Permutation Encrypted Davies-Meyer Construction (sEDM) *)
+
+search_attack Indiff {
+
+  rounds P invertible.
+
+  oracle R (x) :=
+    y = P(P(x) + x);
+    return y.
+
+}.

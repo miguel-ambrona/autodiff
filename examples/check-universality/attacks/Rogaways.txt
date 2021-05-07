@@ -1,0 +1,60 @@
+(* Rogaway's construction (attack) *)
+
+is_universal {
+
+  rounds P1, P2, P3, P4 invertible.
+
+  oracle R (l1,r1,l2,r2) :=
+    y1 = P1_1(l1,r1);
+    y2 = P1_2(l1,r1);
+    y3 = P2_1(l2,r2);
+    y4 = P2_2(l2,r2);
+
+    z1 = P3_1(y2,y3);
+    z2 = P3_2(y2,y3);
+    z3 = P4_1(y4,y1);
+    z4 = P4_2(y4,y1);
+    return z1, z2, z3, z4.
+
+  oracle R^-1 (z1,z2,z3,z4) :=
+    y2 = P3_1^-1(z1,z2);
+    y3 = P3_2^-1(z1,z2);
+    y4 = P4_1^-1(z3,z4);
+    y1 = P4_2^-1(z3,z4);
+
+    l1 = P1_1^-1(y1,y2);
+    r1 = P1_2^-1(y1,y2);
+    l2 = P2_1^-1(y3,y4);
+    r2 = P2_2^-1(y3,y4);
+    return l1, r1, l2, r2.
+
+  distinguisher :=
+    L1  <-$ {0,1}^n;
+    L2  <-$ {0,1}^n;
+    R1  <-$ {0,1}^n;
+    R2  <-$ {0,1}^n;
+    R1' <-$ {0,1}^n;
+    R2' <-$ {0,1}^n;
+
+    X1  = R_1^-1(L1,L2,R1,R2);
+    X1' = R_1^-1(L1,L2,R1',R2');
+    X2  = R_2^-1(L1,L2,R1,R2);
+    X2' = R_2^-1(L1,L2,R1',R2');
+
+    Z  <- P1_2(X1, X2);
+    garbage <-$ {0,1}^n;
+
+    begin prob choice:
+      case:
+        Z' <- P1_2(X1',X2');
+        assert Z = Z';
+        return 1;
+
+      case:
+        Z' <- P1_2(X1', garbage);
+        assert Z <> Z';
+        return 1;
+    end
+  .
+
+}.

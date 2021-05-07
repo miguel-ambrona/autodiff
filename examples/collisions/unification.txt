@@ -1,0 +1,127 @@
+(*
+  Automated collision finding of the 20 candidates from
+    "Black-Box Analysis of the Block-Cipher-Based Hash-Function Constructions from PGV",
+     by J. Black, P. Rogaway, and T. Shrimpton.
+*)
+
+(* f1 *)
+unify
+  E(Var h; Var m) + Var m = E(Var h'; Var m') + Var m' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f2 *)
+unify
+  E(Var h; Var m + Var h) + Var m + Var h =
+      E(Var h'; Var m' + Var h') + Var m' + Var h' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f3 *)
+unify
+  E(Var h; Var m) + Var m + Var h = E(Var h'; Var m') + Var m' + Var h' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f4 *)
+unify
+  E(Var h; Var m + Var h) + Var m =
+      E(Var h'; Var m' + Var h') + Var m' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f5 *)
+unify
+  E(Var m; Var h) + Var h = E(Var m'; Var h') + Var h' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f6 *)
+unify
+  E(Var m; Var h + Var m) + Var h = E(Var m'; Var h' + Var m') + Var h' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f7 *)
+unify
+  E(Var m; Var h) + Var h + Var m = E(Var m'; Var h') + Var h' + Var m' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f8 *)
+unify
+  E(Var m; Var h + Var m) + Var h = E(Var m'; Var h' + Var m') + Var h' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f9 *)
+unify
+  E(Var m + Var h; Var m) + Var m = E(Var m' + Var h'; Var m') + Var m' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f10 *)
+unify
+  E(Var m + Var h; Var h) + Var h = E(Var m' + Var h'; Var h') + Var h' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f11 *)
+unify
+  E(Var m + Var h; Var m) + Var h = E(Var m' + Var h'; Var m') + Var h' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f12 *)
+unify
+  E(Var m + Var h; Var h) + Var m = E(Var m' + Var h'; Var h') + Var m' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f13 *)
+unify
+  E(Var m + Var h; Var m) + v = E(Var m' + Var h'; Var m') + v /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f14 *)
+unify
+  E(Var m + Var h; Var m) + Var m + Var h = E(Var m' + Var h'; Var m') + Var m' + Var h' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f15 *)
+unify
+  E(Var m; Var h) + v = E(Var m'; Var h') + v /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f16 *)
+unify
+  E(Var m + Var h; Var h) + v = E(Var m' + Var h'; Var h') + v /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f17 *)
+unify
+  E(Var m; Var h) + Var m = E(Var m'; Var h') + Var m' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f18 *)
+unify
+  E(Var m + Var h; Var h) + Var m + Var h = E(Var m' + Var h'; Var h') + Var m' + Var h' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f19*)
+unify
+  E(Var m; Var h + Var m) + v = E(Var m'; Var h' + Var m') + v /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.
+
+(* f20 *)
+unify
+  E(Var m; Var h + Var m) + Var m = E(Var m'; Var h' + Var m') + Var m' /\
+  Var h + K(Var m) <> Var h' + K(Var m')
+.

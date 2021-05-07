@@ -1,0 +1,31 @@
+(* Palindromic 10-rounds Feistel-Network INDCPA attack *)
+
+
+is_universal {
+
+  rounds F1,F2,F3,F4,F5.
+
+  oracle R (x0,x1) :=
+    x2  = x0  + F1(x1);
+    x3  = x1  + F2(x2);
+    x4  = x2  + F3(x3);
+    x5  = x3  + F4(x4);
+    x6  = x4  + F5(x5);
+    x7  = x5  + F5(x6);
+    x8  = x6  + F4(x7);
+    x9  = x7  + F3(x8);
+    x10 = x8  + F2(x9);
+    x11 = x9  + F1(x10);
+    return x10, x11.
+
+  distinguisher :=
+    x0 <-$ {0,1}^n;
+    x1 <-$ {0,1}^n;
+    a = R_1(x0,x1);
+    b = R_2(x0,x1);
+    assert R_1(b,a) = x1;
+    assert R_2(b,a) = x0;
+    return 1;
+  .
+
+}.

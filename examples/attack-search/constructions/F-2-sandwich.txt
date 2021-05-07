@@ -1,0 +1,30 @@
+(* 2-rounds Feistel permutation sandwich *)
+
+search_attack Indiff {
+
+  rounds F1, F2.
+  rounds P1, P2, P3, P4 invertible.
+
+  oracle R (l1,r1) :=
+    x1 = P1(l1);
+    x0 = P2(r1);
+
+    x2 = x0 + F1(x1);
+    x3 = x1 + F2(x2);
+
+    l2 = P3(x3);
+    r2 = P4(x2);
+    return r2, l2.
+
+  oracle R^-1 (r2,l2) :=
+    x3 = P3^-1(l2);
+    x2 = P4^-1(r2);
+
+    x1 = x3 + F2(x2);
+    x0 = x2 + F1(x1);
+
+    l1 = P1^-1(x1);
+    r1 = P2^-1(x0);
+    return l1, r1.
+
+}.
